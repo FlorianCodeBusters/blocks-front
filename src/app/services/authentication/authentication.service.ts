@@ -8,17 +8,17 @@ import { AuthenticationClient } from 'src/app/clients/authenticationClient';
 export class AuthenticationService {
   constructor(
     private authenticationClient: AuthenticationClient,
-    private router: Router
+    private router: Router,
   ) {}
 
-  public Login(username: string, password: string): void {
+  public login(username: string, password: string): void {
     this.authenticationClient.Login(username, password).subscribe((token) => {
       localStorage.setItem('token', token);
       this.router.navigate(['/']);
     });
   }
 
-  public Register(username: string, password: string, mail: string): void {
+  public register(username: string, password: string, mail: string): void {
     this.authenticationClient
       .Register(username, password, mail)
       .subscribe((token) => {
@@ -27,16 +27,18 @@ export class AuthenticationService {
       });
   }
 
-  public Logout() {
+  public logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
 
-  public IsLoggedIn(): boolean {
-    return localStorage.getItem('token') !== null;
+  public isLoggedIn(): boolean {
+    let token = localStorage.getItem('token');
+
+    return token !== null && token.length > 0;
   }
 
-  public GetToken(): string | null {
+  public getToken(): string | null {
     return localStorage.getItem('token');
   }
 }
