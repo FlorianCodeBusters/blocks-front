@@ -9,9 +9,21 @@ import { LoginRegisterComponent } from './login-register/login-register.componen
 import { TokenInterceptor } from './helpers/token.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { RegisterPageComponent } from './components/register-page/register-page.component';
 @NgModule({
-  declarations: [AppComponent, SecretComponent, LoginRegisterComponent],
+  declarations: [
+    AppComponent,
+    SecretComponent,
+    LoginRegisterComponent,
+    LoginPageComponent,
+    RegisterPageComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -19,6 +31,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatInputModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

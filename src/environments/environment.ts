@@ -1,6 +1,6 @@
 import { Environment } from './environment.model';
 
 export const environment: Environment = {
-  production: true,
-  apiEndpoint: 'localhost:??',
+  production: false,
+  apiEndpoint: 'https://localhost:5000',
 };

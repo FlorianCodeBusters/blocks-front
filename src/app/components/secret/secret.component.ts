@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { WeatherClient } from 'src/app/clients/weather.client';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({
   selector: 'secret',
@@ -6,7 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./secret.component.scss'],
 })
 export class SecretComponent implements OnInit {
-  constructor() {}
+  public weather: Observable<any> = this.weatherClient.getWeatherData();
+  constructor(
+    private authenticationService: AuthenticationService,
+    private weatherClient: WeatherClient,
+  ) {}
 
   ngOnInit(): void {}
+
+  logout() {
+    this.authenticationService.logout();
+  }
 }

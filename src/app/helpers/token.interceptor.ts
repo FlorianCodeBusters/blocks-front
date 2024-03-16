@@ -14,16 +14,16 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(public authenticationService: AuthenticationService) {}
 
   intercept(
-    req: HttpRequest<any>,
+    request: HttpRequest<any>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     if (this.authenticationService.isLoggedIn()) {
-      req = req.clone({
+      request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${this.authenticationService.getToken()}`,
         },
       });
     }
-    return next.handle(req);
+    return next.handle(request);
   }
 }

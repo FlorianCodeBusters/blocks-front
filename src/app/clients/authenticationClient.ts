@@ -3,34 +3,37 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthenticationClient {
   constructor(private http: HttpClient) {}
 
   public Login(username: string, password: string): Observable<string> {
     return this.http.post(
-      environment.apiEndpoint + 'user/login',
+      environment.apiEndpoint + '/Authenticate',
       {
         username: username,
         password: password,
       },
-      { responseType: 'text' }
+      { responseType: 'text' },
     );
   }
 
   public Register(
     username: string,
     password: string,
-    mail: string
+    mail: string,
   ): Observable<string> {
+    console.log('mail ' + mail);
     return this.http.post(
-      environment.apiEndpoint + 'user/register',
+      environment.apiEndpoint + '/authenticate/register',
       {
         username,
         password,
-        mail,
+        Email: mail,
       },
-      { responseType: 'text' }
+      { responseType: 'text' },
     );
   }
 }
