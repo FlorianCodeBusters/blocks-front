@@ -2,6 +2,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Result } from '../models/result.model';
 
 @Injectable({
   providedIn: 'root',
@@ -9,14 +10,13 @@ import { Observable } from 'rxjs';
 export class AuthenticationClient {
   constructor(private http: HttpClient) {}
 
-  public Login(username: string, password: string): Observable<string> {
-    return this.http.post(
+  public Login(username: string, password: string): Observable<Result<string>> {
+    return this.http.post<Result<string>>(
       environment.apiEndpoint + '/Authenticate',
       {
         username: username,
         password: password,
       },
-      { responseType: 'text' },
     );
   }
 
@@ -24,16 +24,15 @@ export class AuthenticationClient {
     username: string,
     password: string,
     mail: string,
-  ): Observable<string> {
+  ): Observable<Result<string>> {
     console.log('mail ' + mail);
-    return this.http.post(
+    return this.http.post<Result<string>>(
       environment.apiEndpoint + '/authenticate/register',
       {
         username,
         password,
         Email: mail,
       },
-      { responseType: 'text' },
     );
   }
 }

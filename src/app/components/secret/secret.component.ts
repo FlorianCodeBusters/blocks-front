@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WeatherClient } from 'src/app/clients/weather.client';
+import { RoleEnum } from 'src/app/models/role.enum';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({
@@ -19,5 +20,10 @@ export class SecretComponent implements OnInit {
 
   logout() {
     this.authenticationService.logout();
+  }
+
+  isAdmin(): boolean {
+    const user = this.authenticationService.getUser();
+    return user !== null && user.roles.indexOf(RoleEnum.Admin) !== -1;
   }
 }

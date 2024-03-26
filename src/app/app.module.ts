@@ -16,6 +16,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { RegisterPageComponent } from './components/register-page/register-page.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AdminSecretPageComponent } from './components/admin-secret-page/admin-secret-page.component';
+import { MatLabel } from '@angular/material/form-field';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +26,7 @@ import { RegisterPageComponent } from './components/register-page/register-page.
     LoginRegisterComponent,
     LoginPageComponent,
     RegisterPageComponent,
+    AdminSecretPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +40,8 @@ import { RegisterPageComponent } from './components/register-page/register-page.
     MatFormFieldModule,
     MatCardModule,
     MatInputModule,
+    MatSnackBarModule,
+    MatCardModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
