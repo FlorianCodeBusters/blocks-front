@@ -17,6 +17,9 @@ export class TokenInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler,
   ): Observable<HttpEvent<any>> {
+    console.log(
+      'in interceptor toek = ' + this.authenticationService.getToken(),
+    );
     if (this.authenticationService.isLoggedIn()) {
       request = request.clone({
         setHeaders: {

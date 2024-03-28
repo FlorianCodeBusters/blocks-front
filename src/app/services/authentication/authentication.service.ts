@@ -25,6 +25,8 @@ export class AuthenticationService {
         this.handleSucessAuthResult(result);
       },
       error: (error) => {
+        console.log('error adad' + error);
+
         this.handleErrorAuthResult(error);
       },
     });
@@ -48,7 +50,7 @@ export class AuthenticationService {
 
   public isLoggedIn(): boolean {
     let token = this.getToken();
-    return token !== null && token.length > 0;
+    return token !== null && token !== undefined && token.length > 0;
   }
 
   public getUser(): User | null {
@@ -63,6 +65,7 @@ export class AuthenticationService {
 
   public getToken(): string | null {
     const user = this.getUser();
+    console.log('in get token user  = ' + user);
     if (user) {
       return user.token;
     }
@@ -74,14 +77,14 @@ export class AuthenticationService {
 
     if (result != null && result.isSuccess && result.response.length > 1) {
       const decodeToken = jwtDecode<any>(result.response);
-
+      console.log(decodeToken);
       const user = new User(
         decodeToken[ClaimsEnum.NameTokenKey],
         decodeToken[ClaimsEnum.EmailTokenKey],
         decodeToken[ClaimsEnum.RoleTokenKey],
         result.response,
       );
-      localStorage.setItem(this.userKey, JSON.stringify(user.token));
+      localStorage.setItem(this.userKey, JSON.stringify(user));
       this.router.navigate(['/']);
       message = 'User has been authenticated.';
     } else if (result != null && !result.isSuccess) {

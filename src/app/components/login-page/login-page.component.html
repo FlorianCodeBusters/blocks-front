@@ -18,6 +18,10 @@
         <mat-form-field>
           <mat-label>Password</mat-label>
           <input matInput type="password" formControlName="password" />
+          <mat-error *ngIf="loginForm.get('password')?.hasError('password')"
+            >Password must contain a Capital letter, minimum 7 character, and a
+            special character</mat-error
+          >
         </mat-form-field>
       </form>
     </mat-card-content>

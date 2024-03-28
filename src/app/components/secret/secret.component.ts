@@ -24,6 +24,10 @@ export class SecretComponent implements OnInit {
 
   isAdmin(): boolean {
     const user = this.authenticationService.getUser();
-    return user !== null && user.roles.indexOf(RoleEnum.Admin) !== -1;
+    return (
+      user !== null &&
+      user !== undefined &&
+      user.roles.indexOf(RoleEnum.Admin) !== -1
+    );
   }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PasswordValidator } from 'src/app/helpers/password.validator';
 
 @Component({
   selector: 'app-login-page',
@@ -13,8 +14,11 @@ export class LoginPageComponent {
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+      username: new FormControl('', [
+        Validators.required,
+        Validators.minLength(0),
+      ]),
+      password: new FormControl('', [Validators.required, PasswordValidator()]),
     });
   }
 

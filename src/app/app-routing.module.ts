@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: '',
     component: SecretComponent,
-    canActivate: map[AuthGuard],
+    // canActivate: mapToCanActivate([AuthGuard]),
     data: {
       roles: [RoleEnum.User, RoleEnum.Admin],
     },
@@ -27,7 +27,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminSecretPageComponent,
-    canActivate: [AuthGuard],
+    canActivate: mapToCanActivate([AuthGuard]),
     data: {
       roles: [RoleEnum.Admin],
     },
